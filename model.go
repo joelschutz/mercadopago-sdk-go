@@ -53,6 +53,7 @@ type PaymentRequest struct {
 	DifferentialPricing *DifferentialPricing `json:"differential_pricing,omitempty"` // Configuração do preço diferenciado para este pagamento
 	Marketplace         string               `json:"marketplace"`                    // Indica de qual marketplace foi feito pagamento (padrão NENHUM)
 	MarketplaceFee      float64              `json:"marketplace_fee"`                // Comissão de Mercado cobrada pelo proprietario do aplicativo
+	ApplicationFee      float64              `json:"application_fee"`                // Comissão de Mercado cobrada pelo proprietario do aplicativo
 	NotificationURL     string               `json:"notification_url"`               // URL do Webhook que é chamada quando o Status do pagamento é atualizado
 	Payer               Payer                `json:"payer"`                          // Informações do pagador da cobrança
 	PaymentMethods      PaymentMethods       `json:"payment_methods"`                // Configurações das condições de pagamento do pagamento
@@ -408,5 +409,5 @@ type TransactionData struct {
 type ErrorResponse struct {
 	Error   string `json:"error"`   // Slug do erro que retornou
 	Message string `json:"message"` // Mensagem de erro relacinada ao campo
-	Status  int    `json:"status"`  // Status/Codigo do erro
+	Status  int    `json:"status"`  // Mensagem de erro relacinada ao campo
 }
