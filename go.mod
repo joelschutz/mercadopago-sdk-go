@@ -1,3 +1,3 @@
-module github.com/eduardo-mior/mercadopago-sdk-go
+module github.com/joelschutz/mercadopago-sdk-go
 
 go 1.16
