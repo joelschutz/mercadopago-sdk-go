@@ -11,9 +11,9 @@ func init() {
 }
 
 // Testando geração de um pagamento
-func TestSuccessOnCreatePayment(t *testing.T) {
+func TestSuccessOnCreatePreference(t *testing.T) {
 
-	response, mercadopagoErr, err := CreatePayment(PaymentRequest{
+	response, mercadopagoErr, err := CreatePreference(PreferenceRequest{
 		ExternalReference: "test-00001",
 		Items: []Item{
 			{
@@ -50,9 +50,9 @@ func TestSuccessOnCreatePayment(t *testing.T) {
 }
 
 // Testando geração de um pagamento
-func TestSuccessOnCreatePaymentWithTokenParam(t *testing.T) {
+func TestSuccessOnCreatePreferenceWithTokenParam(t *testing.T) {
 
-	response, mercadopagoErr, err := CreatePayment(PaymentRequest{
+	response, mercadopagoErr, err := CreatePreference(PreferenceRequest{
 		ExternalReference: "test-00001",
 		Items: []Item{
 			{
@@ -89,9 +89,9 @@ func TestSuccessOnCreatePaymentWithTokenParam(t *testing.T) {
 }
 
 // Testando tratamento de erro na geração de um pagamento (não informando campo obrigatório)
-func TestFieldErrorOnCreatePayment(t *testing.T) {
+func TestFieldErrorOnCreatePreference(t *testing.T) {
 
-	response, mercadopagoErr, err := CreatePayment(PaymentRequest{
+	response, mercadopagoErr, err := CreatePreference(PreferenceRequest{
 		ExternalReference: "test-00002",
 		Items: []Item{
 			{
@@ -128,9 +128,9 @@ func TestFieldErrorOnCreatePayment(t *testing.T) {
 }
 
 // Testando atualização de um pagamento
-func TestSuccessOnUpdatePayment(t *testing.T) {
+func TestSuccessOnUpdatePreference(t *testing.T) {
 
-	response, mercadopagoErr, err := UpdatePayment("825927174-5423394f-06f1-4d2b-8545-35ebecf70008", PaymentRequest{
+	response, mercadopagoErr, err := UpdatePreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008", PreferenceRequest{
 		ExternalReference: "test-00001",
 		Items: []Item{
 			{
@@ -167,9 +167,9 @@ func TestSuccessOnUpdatePayment(t *testing.T) {
 }
 
 // Testando tratamento de erro na atualização de um pagamento (não informando campo obrigatório)
-func TestFieldErrorOnUpdatePayment(t *testing.T) {
+func TestFieldErrorOnUpdatePreference(t *testing.T) {
 
-	response, mercadopagoErr, err := UpdatePayment("825927174-5423394f-06f1-4d2b-8545-35ebecf70008", PaymentRequest{
+	response, mercadopagoErr, err := UpdatePreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008", PreferenceRequest{
 		ExternalReference: "test-00001",
 		Items: []Item{
 			{
@@ -206,9 +206,9 @@ func TestFieldErrorOnUpdatePayment(t *testing.T) {
 }
 
 // Testando consulta de um pagamento
-func TestSuccessOnGetPayment(t *testing.T) {
+func TestSuccessOnGetPreference(t *testing.T) {
 
-	response, mercadopagoErr, err := GetPayment("825927174-5423394f-06f1-4d2b-8545-35ebecf70008")
+	response, mercadopagoErr, err := GetPreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008")
 
 	if err != nil {
 		t.Error("Erro inesperado!")
@@ -227,9 +227,9 @@ func TestSuccessOnGetPayment(t *testing.T) {
 }
 
 // Testando erro na consulta de um pagamento (pagamento inexistente)
-func TestErrorOnGetPayment(t *testing.T) {
+func TestErrorOnGetPreference(t *testing.T) {
 
-	response, mercadopagoErr, err := GetPayment("test-inexistente")
+	response, mercadopagoErr, err := GetPreference("test-inexistente")
 
 	if err != nil {
 		t.Error("Erro inesperado!")
@@ -249,9 +249,9 @@ func TestErrorOnGetPayment(t *testing.T) {
 }
 
 // Testando busca de um pagamento atráves do filtro external_reference
-func TestSuccessOnSearchPayments(t *testing.T) {
+func TestSuccessOnSearchPreferences(t *testing.T) {
 
-	response, mercadopagoErr, err := SearchPayments(PaymentSearchParams{"external_reference": "test-00001"})
+	response, mercadopagoErr, err := SearchPreferences(PreferenceSearchParams{"external_reference": "test-00001"})
 
 	if err != nil {
 		t.Error("Erro inesperado!")
