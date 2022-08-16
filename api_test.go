@@ -1,8 +1,12 @@
-package mercadopago
+package mercadopago_test
 
 import (
 	"os"
 	"testing"
+
+	"github.com/joelschutz/mercadopago-sdk-go"
+	model "github.com/joelschutz/mercadopago-sdk-go/internal/models"
+	"github.com/joelschutz/mercadopago-sdk-go/internal/service"
 )
 
 // Definindo a variavel de ambiente MERCADO_PAGO_ACCESS_TOKEN que é usada pelo SDK
@@ -13,17 +17,17 @@ func init() {
 // Testando geração de um pagamento
 func TestSuccessOnCreatePreference(t *testing.T) {
 
-	response, mercadopagoErr, err := CreatePreference(PreferenceRequest{
+	response, mercadopagoErr, err := service.CreatePreference(model.PreferenceRequest{
 		ExternalReference: "test-00001",
-		Items: []Item{
+		Items: []model.Item{
 			{
 				Title:     "Pagamendo mensalidade PagueTry",
 				Quantity:  1,
 				UnitPrice: 50,
 			},
 		},
-		Payer: Payer{
-			Identification: PayerIdentification{
+		Payer: model.Payer{
+			Identification: model.PayerIdentification{
 				Type:   "CPF",
 				Number: "12345678909",
 			},
@@ -52,17 +56,17 @@ func TestSuccessOnCreatePreference(t *testing.T) {
 // Testando geração de um pagamento
 func TestSuccessOnCreatePreferenceWithTokenParam(t *testing.T) {
 
-	response, mercadopagoErr, err := CreatePreference(PreferenceRequest{
+	response, mercadopagoErr, err := service.CreatePreference(model.PreferenceRequest{
 		ExternalReference: "test-00001",
-		Items: []Item{
+		Items: []model.Item{
 			{
 				Title:     "Pagamendo mensalidade PagueTry",
 				Quantity:  1,
 				UnitPrice: 50,
 			},
 		},
-		Payer: Payer{
-			Identification: PayerIdentification{
+		Payer: model.Payer{
+			Identification: model.PayerIdentification{
 				Type:   "CPF",
 				Number: "12345678909",
 			},
@@ -91,16 +95,16 @@ func TestSuccessOnCreatePreferenceWithTokenParam(t *testing.T) {
 // Testando tratamento de erro na geração de um pagamento (não informando campo obrigatório)
 func TestFieldErrorOnCreatePreference(t *testing.T) {
 
-	response, mercadopagoErr, err := CreatePreference(PreferenceRequest{
+	response, mercadopagoErr, err := service.CreatePreference(model.PreferenceRequest{
 		ExternalReference: "test-00002",
-		Items: []Item{
+		Items: []model.Item{
 			{
 				Title: "Pagamendo mensalidade PagueTry",
 				// Não iremos informar o preço do item e a quantidade do item que são 2 campos obrigatórios
 			},
 		},
-		Payer: Payer{
-			Identification: PayerIdentification{
+		Payer: model.Payer{
+			Identification: model.PayerIdentification{
 				Type:   "CPF",
 				Number: "12345678909",
 			},
@@ -130,17 +134,17 @@ func TestFieldErrorOnCreatePreference(t *testing.T) {
 // Testando atualização de um pagamento
 func TestSuccessOnUpdatePreference(t *testing.T) {
 
-	response, mercadopagoErr, err := UpdatePreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008", PreferenceRequest{
+	response, mercadopagoErr, err := service.UpdatePreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008", model.PreferenceRequest{
 		ExternalReference: "test-00001",
-		Items: []Item{
+		Items: []model.Item{
 			{
 				Title:     "Pagamendo semestralidade PagueTry",
 				Quantity:  1,
 				UnitPrice: 300,
 			},
 		},
-		Payer: Payer{
-			Identification: PayerIdentification{
+		Payer: model.Payer{
+			Identification: model.PayerIdentification{
 				Type:   "CPF",
 				Number: "12345678909",
 			},
@@ -169,16 +173,16 @@ func TestSuccessOnUpdatePreference(t *testing.T) {
 // Testando tratamento de erro na atualização de um pagamento (não informando campo obrigatório)
 func TestFieldErrorOnUpdatePreference(t *testing.T) {
 
-	response, mercadopagoErr, err := UpdatePreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008", PreferenceRequest{
+	response, mercadopagoErr, err := service.UpdatePreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008", model.PreferenceRequest{
 		ExternalReference: "test-00001",
-		Items: []Item{
+		Items: []model.Item{
 			{
 				Title: "Pagamendo mensalidade PagueTry",
 				// Não iremos informar o preço do item e a quantidade do item que são 2 campos obrigatórios
 			},
 		},
-		Payer: Payer{
-			Identification: PayerIdentification{
+		Payer: model.Payer{
+			Identification: model.PayerIdentification{
 				Type:   "CPF",
 				Number: "12345678909",
 			},
@@ -208,7 +212,7 @@ func TestFieldErrorOnUpdatePreference(t *testing.T) {
 // Testando consulta de um pagamento
 func TestSuccessOnGetPreference(t *testing.T) {
 
-	response, mercadopagoErr, err := GetPreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008")
+	response, mercadopagoErr, err := service.GetPreference("825927174-5423394f-06f1-4d2b-8545-35ebecf70008")
 
 	if err != nil {
 		t.Error("Erro inesperado!")
@@ -229,7 +233,7 @@ func TestSuccessOnGetPreference(t *testing.T) {
 // Testando erro na consulta de um pagamento (pagamento inexistente)
 func TestErrorOnGetPreference(t *testing.T) {
 
-	response, mercadopagoErr, err := GetPreference("test-inexistente")
+	response, mercadopagoErr, err := service.GetPreference("test-inexistente")
 
 	if err != nil {
 		t.Error("Erro inesperado!")
@@ -251,7 +255,7 @@ func TestErrorOnGetPreference(t *testing.T) {
 // Testando busca de um pagamento atráves do filtro external_reference
 func TestSuccessOnSearchPreferences(t *testing.T) {
 
-	response, mercadopagoErr, err := SearchPreferences(PreferenceSearchParams{"external_reference": "test-00001"})
+	response, mercadopagoErr, err := service.SearchPreferences(model.PreferenceSearchParams{"external_reference": "test-00001"})
 
 	if err != nil {
 		t.Error("Erro inesperado!")
@@ -272,7 +276,7 @@ func TestSuccessOnSearchPreferences(t *testing.T) {
 // Testando busca dos tipos de documento de identificação
 func TestSuccessOnGetIdentificationTypes(t *testing.T) {
 
-	identificationTypes, mercadopagoErr, err := GetIdentificationTypes()
+	identificationTypes, mercadopagoErr, err := mercadopago.GetIdentificationTypes()
 
 	if err != nil {
 		t.Error("Erro inesperado!")
@@ -293,7 +297,7 @@ func TestSuccessOnGetIdentificationTypes(t *testing.T) {
 // Testando busca dos meios de pagamento
 func TestSuccessOnGetPaymentMethods(t *testing.T) {
 
-	paymentMethods, mercadopagoErr, err := GetPaymentMethods()
+	paymentMethods, mercadopagoErr, err := mercadopago.GetPaymentMethods()
 
 	if err != nil {
 		t.Error("Erro inesperado!")
@@ -314,7 +318,7 @@ func TestSuccessOnGetPaymentMethods(t *testing.T) {
 // Testando consulta de situação de um pagamento
 func TestErrorOnConsultStatusPayment(t *testing.T) {
 
-	response, mercadopagoErr, err := ConsultPayment("1241420907")
+	response, mercadopagoErr, err := service.ConsultPayment("1241420907")
 
 	if err != nil {
 		t.Error("Erro inesperado!")
