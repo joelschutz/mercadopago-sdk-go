@@ -9,7 +9,7 @@ import (
 )
 
 // ConsultPayment é o método responsável consultar as informações atualizadas de um pagamento no MercadoPago, incluindo Status.
-func ConsultPayment(paymentID string, mercadoPagoAccessToken ...string) (*model.PaymentConsultResponse, *model.ErrorResponse, error) {
+func ConsultPayment(paymentID string, mercadoPagoAccessToken ...string) (*model.PaymentResponse, *model.ErrorResponse, error) {
 
 	params := request.Params{
 		Method:     "GET",
@@ -28,7 +28,7 @@ func ConsultPayment(paymentID string, mercadoPagoAccessToken ...string) (*model.
 		return nil, resp, err
 	}
 
-	var paymentResponse model.PaymentConsultResponse
+	var paymentResponse model.PaymentResponse
 	err = json.Unmarshal(response.RawBody, &paymentResponse)
 	return &paymentResponse, nil, err
 }
