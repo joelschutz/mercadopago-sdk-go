@@ -1,6 +1,6 @@
 package model
 
-import "github.com/joelschutz/mercadopago-sdk-go/internal/request"
+import "github.com/joelschutz/mercadopago-sdk-go/request"
 
 // Example Query
 // map[string]interface{}{

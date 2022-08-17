@@ -3,7 +3,7 @@ package model
 import (
 	"time"
 
-	"github.com/joelschutz/mercadopago-sdk-go/internal/request"
+	"github.com/joelschutz/mercadopago-sdk-go/request"
 )
 
 // PaymentResponse é a struct que é usada para receber os dados do request de novo pagamento do MercadoPago.
