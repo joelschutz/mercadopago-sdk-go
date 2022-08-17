@@ -1,6 +1,6 @@
-![GoLang MercadoPago](https://i.imgur.com/fUzaPBC.png)
+![GoLang MercadoPago v2](https://i.imgur.com/fUzaPBC.png)
 # MercadoPago SDK para Go
-SDK (não oficial) para consumir os serviços do MercadoPago em Golang.
+SDK (não oficial) para consumir os serviços do MercadoPago em Golang. Essa fork implementa o fluxo Checkout Transparente(Checkout API)
 
 ## 📲  Instalação
 Para baixar o SDK basta utilizar o seguinte comando:
