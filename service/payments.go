@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 
 	"github.com/joelschutz/mercadopago-sdk-go"
-	model "github.com/joelschutz/mercadopago-sdk-go/internal/models"
-	"github.com/joelschutz/mercadopago-sdk-go/internal/request"
+	model "github.com/joelschutz/mercadopago-sdk-go/models"
+	"github.com/joelschutz/mercadopago-sdk-go/request"
 )
 
 // ConsultPayment é o método responsável consultar as informações atualizadas de um pagamento no MercadoPago, incluindo Status.

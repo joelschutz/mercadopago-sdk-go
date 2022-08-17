@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/joelschutz/mercadopago-sdk-go"
-	model "github.com/joelschutz/mercadopago-sdk-go/internal/models"
-	"github.com/joelschutz/mercadopago-sdk-go/internal/service"
+	model "github.com/joelschutz/mercadopago-sdk-go/models"
+	"github.com/joelschutz/mercadopago-sdk-go/service"
 )
 
 // Definindo a variavel de ambiente MERCADO_PAGO_ACCESS_TOKEN que é usada pelo SDK
