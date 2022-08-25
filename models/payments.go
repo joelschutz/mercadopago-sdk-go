@@ -145,12 +145,23 @@ type PaymentConsultCard struct {
 
 // PaymentAdditionalInfo é a struct que contém informações adicionais sobre o pagamento
 type PaymentAdditionalInfo struct {
-	IPAddress string    `json:"ip_address"` // IP do usuário que pagou
-	Items     []Item    `json:"items"`
-	Payer     Payer     `json:"payer"`     // Informações do pagador da cobrança
-	Shipments Shipments `json:"shipments"` // Informações de envio dos itens
+	IPAddress string                         `json:"ip_address"` // IP do usuário que pagou
+	Items     []Item                         `json:"items"`
+	Payer     PaymentAdditionalInfoPayer     `json:"payer"`     // Informações do pagador da cobrança
+	Shipments PaymentAdditionalInfoShipments `json:"shipments"` // Informações de envio dos itens
 
 	// Items     []Item `json:"items"`
 	// Por algum motivo eles retoram a Quantity do item e o UnityPrice como String e isso faz com que aconteça erro no Unmarshal do JSON.
 	// Por esse motivo foi comentado o campo Items das informações adicionais.
+}
+
+type PaymentAdditionalInfoPayer struct {
+	Address   PayerAddress `json:"address"`    // Endereço do pagador
+	Phone     string       `json:"phone"`      // Email do pagador
+	FirstName string       `json:"first_name"` // Nome do pagador (não colocar caracteres especiais)
+	LastName  string       `json:"last_name"`  // Sobrenome do pagador (não colocar caracteres especiais)
+}
+
+type PaymentAdditionalInfoShipments struct {
+	ReceiverAddress *Address `json:"receiver_address"` // Endereço de envio
 }
