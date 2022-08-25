@@ -14,12 +14,12 @@ import "github.com/joelschutz/mercadopago-sdk-go/request"
 type AuthParams request.QueryParams
 
 type AuthResponse struct {
-	UserId       int64  `json:"user_id"`
-	AccessToken  string `json:"access_token"`
-	TokenType    string `json:"token_type"`
-	ExpiresIn    int64  `json:"expires_in"`
-	Scope        string `json:"scope"`
-	RefreshToken string `json:"refresh_token"`
-	PublicKey    string `json:"public_key"`
-	LiveMode     bool   `json:"live_mode"`
+	UserId       int64  `json:"user_id,omitempty"`
+	AccessToken  string `json:"access_token,omitempty"`
+	TokenType    string `json:"token_type,omitempty"`
+	ExpiresIn    int64  `json:"expires_in,omitempty"`
+	Scope        string `json:"scope,omitempty"`
+	RefreshToken string `json:"refresh_token,omitempty"`
+	PublicKey    string `json:"public_key,omitempty"`
+	LiveMode     bool   `json:"live_mode,omitempty"`
 }
