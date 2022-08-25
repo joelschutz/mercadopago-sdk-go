@@ -14,18 +14,11 @@ type DifferentialPricing struct {
 
 // Payer é a struct que é usada para identificar para quem é o pagamento.
 type Payer struct {
-	Phone          PayerPhone          `json:"phone"`          // Número de telefone do pagador
 	Identification PayerIdentification `json:"identification"` // Documento de identificação do pagador
 	Address        PayerAddress        `json:"address"`        // Endereço do pagador
 	Email          string              `json:"email"`          // Email do pagador
-	Name           string              `json:"name"`           // Nome do pagador (não colocar caracteres especiais)
-	Surname        string              `json:"surname"`        // Sobrenome do pagador (não colocar caracteres especiais)
-}
-
-// PayerPhone é a struct que contém as informações do telefone do pagador
-type PayerPhone struct {
-	AreaCode string `json:"area_code"` // Código de área do telefone
-	Number   string `json:"number"`    // Número do telefone
+	FirstName      string              `json:"first_name"`     // Nome do pagador (não colocar caracteres especiais)
+	LastName       string              `json:"last_name"`      // Sobrenome do pagador (não colocar caracteres especiais)
 }
 
 // PayerIdentification é a struct que contém as informações de identificação do pagador
@@ -36,9 +29,9 @@ type PayerIdentification struct {
 
 // PayerAddress é a struct que contém as informações do endereço do pagador
 type PayerAddress struct {
-	ZipCode      string  `json:"zip_codigo"`   // CEP do endereço do pagador
-	StreetName   string  `json:"street_name"`  // Nome da rua do endereço do pagador
-	StreetNumber *string `json:"stree_number"` // Número do endereço do pagador
+	ZipCode      string  `json:"zip_code"`      // CEP do endereço do pagador
+	StreetName   string  `json:"street_name"`   // Nome da rua do endereço do pagador
+	StreetNumber *string `json:"street_number"` // Número do endereço do pagador
 }
 
 // PaymentMethods é a struct que contém as informações das configurações do pagamento

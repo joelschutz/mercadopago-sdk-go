@@ -17,7 +17,7 @@ import (
 // 	PaymentMethods     PaymentMethods `json:"payment_methods"`      // Configurações das condições de pagamento do pagamento
 // 	ClientID           string         `json:"client_id"`            // ID do cliente do MercadoPago
 // 	Marketplace        string         `json:"marketplace"`          // Indica de qual marketplace foi feito pagamento (padrão NENHUM)
-// 	ApplicationFee     float64        `json:"appliccation_fee"`     // Comissão de Mercado cobrada pelo proprietario do aplicativo
+// 	ApplicationFee     float64        `json:"application_fee"`     // Comissão de Mercado cobrada pelo proprietario do aplicativo
 // 	Shipments          Shipments      `json:"shipments"`            // Informações de envio dos itens
 // 	NotificationURL    string         `json:"notification_url"`     // URL do Webhook que é chamada quando o Status do pagamento é atualizado
 // 	ExternalReference  string         `json:"external_reference"`   // Nosso ID de controle interno
@@ -35,12 +35,12 @@ import (
 
 // PaymentRequest é a struct que é usada para fazer a request de um novo pagamento para o MercadoPago
 type PaymentRequest struct {
-	AdditionalInfo        PaymentAdditionalInfo  `json:"additional_info"`  // Informações adicionais do pagamento
-	ApplicationFee        float64                `json:"appliccation_fee"` // Comissão de Mercado cobrada pelo proprietario do aplicativo
-	BinaryMode            bool                   `json:"binary_mode"`      // Indica se é o modo binaria de pagamento ou não
+	AdditionalInfo        PaymentAdditionalInfo  `json:"additional_info"` // Informações adicionais do pagamento
+	ApplicationFee        float64                `json:"application_fee"` // Comissão de Mercado cobrada pelo proprietario do aplicativo
+	BinaryMode            bool                   `json:"binary_mode"`     // Indica se é o modo binaria de pagamento ou não
 	CallbackUrl           string                 `json:"callback_url"`
 	CampaignID            int                    `json:"campaign_id"`             // Nosso ID do MercadoPago
-	Captured              bool                   `json:"captured"`                // Indica se o pagamento foi capturado ou não ???
+	Capture               bool                   `json:"capture"`                 // Indica se o pagamento foi capturado ou não ???
 	CouponAmount          float64                `json:"coupon_amount"`           // Valor pago
 	CouponCode            string                 `json:"coupon_code"`             // Valor pago
 	DateOfExpiration      *time.Time             `json:"date_of_expiration"`      // Data de expiração de meios de pagamento em dinheiro
@@ -69,7 +69,7 @@ type PaymentResponse struct {
 	AdditionalInfo            PaymentAdditionalInfo  `json:"additional_info"`    // Informações adicionais do pagamento
 	AuthorizationCode         *string                `json:"authorization_code"` // Código de autorização do pagamento
 	BinaryMode                bool                   `json:"binary_mode"`        // Indica se é o modo binaria de pagamento ou não
-	Captured                  bool                   `json:"captured"`           // Indica se o pagamento foi capturado ou não ???
+	Capture                   bool                   `json:"capture"`            // Indica se o pagamento foi capturado ou não ???
 	Card                      PaymentConsultCard     `json:"card"`               // Informações do cartão de crédito do pagamento
 	CollectorID               int                    `json:"collector_id"`
 	CurrencyID                string                 `json:"currency_id"`                    // Identificador universal da moeda que será usada no pagamento no formato ISO-4217
