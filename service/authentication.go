@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 
 	"github.com/joelschutz/mercadopago-sdk-go"
-	model "github.com/joelschutz/mercadopago-sdk-go/internal/models"
-	"github.com/joelschutz/mercadopago-sdk-go/internal/request"
+	model "github.com/joelschutz/mercadopago-sdk-go/models"
+	"github.com/joelschutz/mercadopago-sdk-go/request"
 )
 
 // CreatePreference é o método responsável por criar um preference no MercadoPago.
