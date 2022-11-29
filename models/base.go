@@ -211,4 +211,11 @@ type ErrorResponse struct {
 	Error   string `json:"error,omitempty"`   // Slug do erro que retornou
 	Message string `json:"message,omitempty"` // Mensagem de erro relacinada ao campo
 	Status  int    `json:"status,omitempty"`  // Mensagem de erro relacinada ao campo
+	Causes  []ErrorCause `json:"cause,omitempty"`   // Origens do erro
+}
+
+type ErrorCause struct {
+	Code        int    `json:"code,omitempty"`
+	Description string `json:"description,omitempty"`
+	Data        string `json:"data,omitempty"`
 }
